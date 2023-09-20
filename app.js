@@ -10,11 +10,16 @@ const corsOptions = require('./middlewares/corsOptions');
 const router = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
 
+const { DATABASE } = require('./utils/utils');
+
+const { PORT = 3000, NODE_ENV, DATABASE_PROD } = process.env;
+
 const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 // подключение к БД
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
+
+mongoose.connect((NODE_ENV === 'production') ? DATABASE_PROD : DATABASE);
 app.use(requestLogger);
 
 app.use(router);
@@ -28,4 +33,6 @@ app.use(errors());
 // централизованная обработка остальных ошибок
 app.use(errorHandler);
 
-app.listen(3000);
+app.listen(PORT, () => {
+  console.log(`Сервер запущен на ${PORT} порту`);
+});

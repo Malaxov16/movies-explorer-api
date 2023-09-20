@@ -1,22 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { celebrate, Joi } = require('celebrate');
 
-const regex = /https?:\/\/[-0-9a-z\\._~:?#\\[\]@!$&'()*+,;=]+\.ru[-0-9a-z._~:\\/?#\\[\]@!$&'()*+,;=]*/i;
+const regex = /https?:\/\/[-0-9a-z\\._~:?#\\[\]@!$&'()*+,;=]+\.[-0-9a-z._~:\\/?#\\[\]@!$&'()*+,;=]*/i;
 
-// проверка id пользователя
-module.exports.idUserValidator = celebrate({
-  params: Joi.object().keys({
-    userID: Joi.string().hex().length(24),
-  }),
-});
-
-// проверка создания пользователя
-module.exports.createUserValidator = celebrate({
+// проверка авторизации пользователя
+module.exports.loginValidator = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(regex),
-    email: Joi.string().required().email({ minDomainSegments: 1 }),
+    email: Joi.string().required(),
     password: Joi.string().required(),
   }),
 });
@@ -24,37 +13,40 @@ module.exports.createUserValidator = celebrate({
 // проверка обновления данных пользователя
 module.exports.updateUserValidator = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    about: Joi.string().required().min(2).max(30),
+    name: Joi.string().min(2).max(30).required(),
+    email: Joi.string().required().email({ minDomainSegments: 1 }),
   }),
 });
 
-// проверка обновления аватара
-module.exports.updateUserAvatarValidator = celebrate({
+// проверка создания пользователя
+module.exports.createUserValidator = celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().pattern(regex),
-  }),
-});
-
-// проверка данных для аутентификации
-module.exports.loginValidator = celebrate({
-  body: Joi.object().keys({
+    name: Joi.string().min(2).max(30).required(),
     email: Joi.string().required().email({ minDomainSegments: 1 }),
     password: Joi.string().required(),
   }),
 });
 
-// проверка id карточки
-module.exports.idCardValidator = celebrate({
-  params: Joi.object().keys({
-    cardID: Joi.string().hex().length(24),
+// проверка создания фильма
+module.exports.createMovieValidator = celebrate({
+  body: Joi.object().keys({
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().pattern(regex),
+    trailerLink: Joi.string().required().pattern(regex),
+    thumbnail: Joi.string().required().pattern(regex),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
   }),
 });
 
-// проверка создания карточки
-module.exports.createCardValidator = celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().pattern(regex),
+// проверка id фильма
+module.exports.idMovieValidator = celebrate({
+  params: Joi.object().keys({
+    movieID: Joi.string().hex().length(24).required(),
   }),
 });
