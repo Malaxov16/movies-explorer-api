@@ -1,10 +1,10 @@
 # movies-explorer-api
 
-# :one: Описание проекта
+1. Описание проекта
 
 Прилоежение Movies
 
-# :two: Описание функционала
+2. Описание функционала
 
 Регистрация пользователя
 Авторизация пользователя
@@ -12,14 +12,14 @@
 Сохранение фильма в приложении
 Удаление фильма
 
-# :3: Стек технологий
+3. Стек технологий
 
 JavaScript  
 Node.js  
 Express  
 MongoDB
 
-# :4: Адрес сервера
+4. Адрес сервера
 
 IP 51.250.76.133
-###### [Ссылка на Backend](https://movies-project.nomoredomainsrocks.ru)
+###### Ссылка на Backend https://movies-project.nomoredomainsrocks.ru
