@@ -5,7 +5,6 @@ const {
 } = require('../controllers/users');
 const { updateUserValidator } = require('../middlewares/validate');
 
-console.log('Выполнение роута users');
 router.get('/me', getUser);
 router.patch('/me', updateUserValidator, updateUserInfo);
 
