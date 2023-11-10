@@ -70,6 +70,10 @@ module.exports.updateUserInfo = (req, res, next) => {
         next(new BadRequestError('Переданы некорректные данные для обновления данных о пользователе.'));
         return;
       }
+      if (err.code === 11000) {
+        next(new ConflictError('Пользователь с таким email уже существует.'));
+        return;
+      }
       next(err);
     });
 };
