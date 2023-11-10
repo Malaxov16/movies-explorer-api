@@ -6,6 +6,7 @@ const { JWT_SECRET = 'jwt_secret' } = process.env;
 
 // eslint-disable-next-line consistent-return
 module.exports = (req, res, next) => {
+  console.log('Выполнение мидлваре auth ', req);
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new AuthError('Необходима авторизация.');

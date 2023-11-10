@@ -21,7 +21,7 @@ app.use(express.json());
 
 mongoose.connect((NODE_ENV === 'production') ? DATABASE_PROD : DATABASE);
 app.use(requestLogger);
-
+console.log('Выполнение app');
 app.use(router);
 
 // логирование ошибок
