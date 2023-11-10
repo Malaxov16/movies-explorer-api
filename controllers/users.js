@@ -58,6 +58,7 @@ module.exports.createUser = (req, res, next) => {
 // обновление инфомрации о пользователе
 module.exports.updateUserInfo = (req, res, next) => {
   const { name, email } = req.body;
+  console.log(req);
   User.findByIdAndUpdate(req.user._id, { name, email }, opts)
     .then((user) => {
       if (!user) {
