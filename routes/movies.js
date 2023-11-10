@@ -7,7 +7,6 @@ const {
 } = require('../controllers/movies');
 const { createMovieValidator, idMovieValidator } = require('../middlewares/validate');
 
-console.log('Выполнение роута movies');
 router.get('/', getMovie);
 router.post('/', createMovieValidator, createMovie);
 router.delete('/:movieID', idMovieValidator, deleteMovie);

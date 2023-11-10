@@ -12,14 +12,17 @@ const opts = { runValidators: true, new: true };
 
 // получение данных пользователя по id
 module.exports.getUser = (req, res, next) => {
+  console.log('Выполнение getUser', req.user._id);
   User.findById(req.user._id)
     .then((user) => {
+      console.log(user);
       if (!user) {
         throw new NotFoundError('Пользователь не найден.');
       }
       res.send({ data: user });
     })
     .catch((err) => {
+      console.log(err);
       if (err.name === 'CastError') {
         next(new BadRequestError('Переданы некорректные данные для поиска пользователя.'));
       }
@@ -58,7 +61,6 @@ module.exports.createUser = (req, res, next) => {
 // обновление инфомрации о пользователе
 module.exports.updateUserInfo = (req, res, next) => {
   const { name, email } = req.body;
-  console.log(req);
   User.findByIdAndUpdate(req.user._id, { name, email }, opts)
     .then((user) => {
       if (!user) {
