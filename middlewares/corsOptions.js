@@ -2,12 +2,14 @@
 // мидлваре для работы CORS не зайдествован
 
 const whiteList = [
-  'http://project-mesto.nomoredomainsicu.ru',
-  'https://project-mesto.nomoredomainsicu.ru',
+  'http://movies-project.nomoredomainsrocks.ru',
+  'https://movies-project.nomoredomainsrocks.ru',
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
   '127.0.0.1:3000',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
 ];
 
 module.exports = (req, res, next) => {
