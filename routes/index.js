@@ -5,6 +5,7 @@ const authChecker = require('../middlewares/auth');
 const NotFoundError = require('../errors/notFoundError');
 const { loginValidator, createUserValidator } = require('../middlewares/validate');
 
+console.log('Выполнение роута index');
 router.use('/signin', loginValidator, login);
 router.use('/signup', createUserValidator, createUser);
 
